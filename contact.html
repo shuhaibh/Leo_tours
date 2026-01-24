@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact | Leo Tour & Events</title>
+  <meta name="description" content="Get in touch with Leo Tour & Events. We're here to help plan your perfect tour or event." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* VARIABLES */
+    :root {
+      --primary: #ff6b35;
+      --primary-dark: #e55a2b;
+      --secondary: #ffd23f;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --text: #334155;
+      --border: #e2e8f0;
+    }
+
+    /* GLOBAL */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: transparent;
+    }
+
+    .header.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .navbar {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      color: white;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      min-height: 350px;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.7)),
+        url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1600&auto=format&fit=crop')
+        center/cover no-repeat;
+      display: flex;
+      align-items: center;  
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15), transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255, 210, 63, 0.15), transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    .hero-content {
+      color: white;
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 6rem 0;
+      background: var(--white);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* CONTACT INFO */
+    .contact-info h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      color: #64748b;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .info-text h3 {
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-text p,
+    .info-text a {
+      color: #64748b;
+      transition: color 0.3s ease;
+    }
+
+    .info-text a:hover {
+      color: var(--primary);
+    }
+
+    /* CONTACT FORM */
+    .contact-form {
+      background: var(--light);
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-form h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.05rem;
+      margin-top: 1rem;
+    }
+
+    /* QUICK LINKS */
+    .quick-links {
+      padding: 5rem 0;
+      background: var(--dark);
+      color: white;
+      text-align: center;
+    }
+
+    .quick-links h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .link-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .link-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .link-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .link-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--dark-light);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .footer .container {
+      color: #94a3b8;
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      z-index: 3000;
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+      animation: none;
+    }
+
+    /* SUCCESS MESSAGE */
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .success-message.show {
+      display: block;
+      animation: slideDown 0.4s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-form {
+        padding: 2rem;
+      }
+
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-links h2,
+      .contact-info h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <nav class="navbar container">
+    <div class="logo">LEO TOUR & EVENTS</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+
+    <a href="contact.html" class="btn-primary">Enquire</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content container">
+    <h1>Get In Touch</h1>
+    <p>We're here to help plan your perfect experience</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section container">
+  <div class="contact-wrapper">
+    
+    <!-- LEFT: CONTACT INFO -->
+    <div class="contact-info">
+      <h2>Let's Talk</h2>
+      <p>Have questions about our tours or events? Want to discuss your requirements? We're just a message away!</p>
+
+      <div class="info-item">
+        <div class="info-icon">📱</div>
+        <div class="info-text">
+          <h3>Phone</h3>
+          <p><a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a></p>
+          <p style="font-size: 0.9rem; margin-top: 0.3rem;">Mon-Sat, 9 AM - 7 PM</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">📧</div>
+        <div class="info-text">
+          <h3>Email</h3>
+          <p><a href="mailto:info@leotours.com">info@leotours.com</a></p>
+          <p style="font-size: 0.9rem; margin-top: 0.3rem;">We'll respond within 24 hours</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+          <h3>Office</h3>
+          <p>MG Road, Bengaluru</p>
+          <p>Karnataka, India - 560001</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">💬</div>
+        <div class="info-text">
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/91XXXXXXXXXX" target="_blank">Chat with us instantly</a></p>
+          <p style="font-size: 0.9rem; margin-top: 0.3rem;">Available 24/7</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CONTACT FORM -->
+    <div class="contact-form">
+      <h3>Send Us a Message</h3>
+      
+      <div class="success-message" id="successMessage">
+        ✓ Message sent! We'll get back to you soon.
+      </div>
+
+      <form onsubmit="sendContactForm(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label>I'm Interested In</label>
+          <select id="interest" required>
+            <option value="">Select an option</option>
+            <option>Tours</option>
+            <option>Events</option>
+            <option>Both</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="message" placeholder="Tell us about your requirements..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary submit-btn">Send Message via WhatsApp</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="quick-links">
+  <div class="container">
+    <h2>Quick Actions</h2>
+    
+    <div class="links-grid">
+      <a href="tours.html" class="link-card">
+        <div class="link-icon">🗺️</div>
+        <h3>Browse Tours</h3>
+        <p>Explore our curated tour packages</p>
+      </a>
+
+      <a href="events.html" class="link-card">
+        <div class="link-icon">🎉</div>
+        <h3>Plan Event</h3>
+        <p>Start planning your perfect event</p>
+      </a>
+
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="link-card">
+        <div class="link-icon">💬</div>
+        <h3>WhatsApp Us</h3>
+        <p>Get instant responses on chat</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">© 2026 Leo Tour & Events. All rights reserved.</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+  💬
+</a>
+
+<script>
+  const phone = "91XXXXXXXXXX"; // CHANGE THIS
+
+  function sendContactForm(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phoneNum = document.getElementById('phone').value;
+    const interest = document.getElementById('interest').value;
+    const message = document.getElementById('message').value;
+    
+    const msg = `Hello 👋
+I would like to get in touch.
+
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phoneNum}
+🎯 Interest: ${interest}
+
+💬 Message:
+${message}`;
+    
+    // Show success message
+    document.getElementById('successMessage').classList.add('show');
+    
+    // Open WhatsApp after a brief delay
+    setTimeout(() => {
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
+      
+      // Reset form
+      e.target.reset();
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        document.getElementById('successMessage').classList.remove('show');
+      }, 3000);
+    }, 500);
+  }
+
+  const header = document.querySelector('.header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+</script>
+
+</body>
+</html>
